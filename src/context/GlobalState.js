@@ -5,16 +5,17 @@ import AppReducer from './AppReducer';
 const initialState = {
     transactions: [
         {
-            id: 1, transactionText: 'Transaction1', transactionAmount: 30,
+            id: 1, text: 'Transaction1', amount: 30,
         }, {
-            id: 2, transactionText: 'Transaction2', transactionAmount: 20
+            id: 2, text: 'Transaction2', amount: 20
         }, {
-            id: 3, transactionText: 'Transaction3', transactionAmount: 10
+            id: 3, text: 'Transaction3', amount: 10
         }
         , {
-            id: 4, transactionText: 'Transaction4', transactionAmount: -50
+            id: 4, text: 'Transaction4', amount: -50
         }
-    ]
+    ],
+    monthlyGoalAmount: 100
 }
 
 //Create context
@@ -36,9 +37,18 @@ export const GlobalProvider = ({ children }) => {
             payload: transaction
         })
     }
-    return (<GlobalContext.Provider value={{ 
+    function setGoal(monthlyGoalAmount) {
+        console.log('setting goal ' + monthlyGoalAmount )
+        dispatch({
+            type: 'SET_GOAL',
+            payload: monthlyGoalAmount
+        })
+    }
+    return (<GlobalContext.Provider value={{
         transactions: state.transactions,
+        monthlyGoalAmount: state.monthlyGoalAmount,
         deleteTransaction,
-        addTransaction
+        addTransaction,
+        setGoal
     }}>{children}</GlobalContext.Provider>)
 }

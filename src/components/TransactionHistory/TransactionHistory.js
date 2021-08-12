@@ -1,18 +1,15 @@
 import React, { useContext } from 'react'
-import './TransactionHistory.scss'
-import { GlobalContext  } from '../../context/GlobalState'
-import { Transaction } from '../Transaction/Transaction'
+import TransactionHistoryTable from './TransactionHistoryTable'
+import { GlobalContext } from '../../context/GlobalState'
 
 export const TransactionHistory = () => {
-    const {transactions} = useContext(GlobalContext)
+    const { transactions } = useContext(GlobalContext)
+    const incomeTransactions = transactions.filter((transaction) => transaction.amount > 0)
+    const expenseTransactions = transactions.filter((transaction) => transaction.amount < 0)
     return (
-        <div>
-            <h3>Transaction History</h3>
-            <ul className="react-budget__transaction-list">
-                {transactions.map(transaction => 
-                    (<Transaction key={transaction.id} transaction={transaction} />))
-                }
-            </ul>
-        </div>
+        <div className="react-budget__transaction-history-flexbox">
+            <TransactionHistoryTable type='Income' transactions={incomeTransactions} />
+            <TransactionHistoryTable type='Expenses' transactions={expenseTransactions} />
+      </div>
     )
 }
