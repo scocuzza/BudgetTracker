@@ -8,7 +8,7 @@
     justify-content: space-around;
     margin: 30px;
   }
-  &__balance-goal-flexbox {
+  &__flexbox {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -19,5 +19,10 @@
     display: flex;
     justify-content: space-around;
     margin: 40px;
+  }
+  &__balance-goal-flexbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }

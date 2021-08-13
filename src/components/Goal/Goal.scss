@@ -1,9 +1,14 @@
 .react-budget__goal {
     text-align: center;
+    &-content {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 20px;
+    }
     .MuiFormControl-root {
         vertical-align: middle;
         text-align: center;
         padding: 0 10px;
-        max-width: 90px;
+        max-width: 100px;
     }
 }

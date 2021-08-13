@@ -13,10 +13,12 @@ function App() {
   return (
     <GlobalProvider>
       <HeaderTitle />
-      <div className="react-budget__balance-goal-flexbox">
+      <div className="react-budget__flexbox">
         <IncomeExpense />
-        <Balance />
-        <Goal />
+        <div className="react-budget__balance-goal-flexbox">
+          <Balance />
+          <Goal />
+        </div>
         <AddTransaction />
         <TransactionTabs />
       </div>
