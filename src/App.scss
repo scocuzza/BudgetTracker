@@ -11,6 +11,9 @@
   &__balance-goal-flexbox {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
+    max-width: 50%;
+    margin: auto;
   }
   &__history-flexbox {
     display: flex;

@@ -5,17 +5,17 @@ import AppReducer from './AppReducer';
 const initialState = {
     transactions: [
         {
-            id: 1, text: 'Transaction1', amount: 30,
+            id: 1, text: 'Salary', amount: 2000,
         }, {
-            id: 2, text: 'Transaction2', amount: 20
+            id: 2, text: 'Rent', amount: -1000
         }, {
-            id: 3, text: 'Transaction3', amount: 10
+            id: 3, text: 'Utilities', amount: -200
         }
         , {
-            id: 4, text: 'Transaction4', amount: -50
+            id: 4, text: 'Groceries', amount: -200
         }
     ],
-    monthlyGoalAmount: 100
+    monthlyGoalAmount: 700
 }
 
 //Create context

@@ -17,8 +17,6 @@ function App() {
         <IncomeExpense />
         <Balance />
         <Goal />
-      </div>
-      <div className="react-budget__history-flexbox">
         <AddTransaction />
         <TransactionTabs />
       </div>
