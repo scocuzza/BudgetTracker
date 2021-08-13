@@ -7,11 +7,27 @@ import TransactionTabs from './components/TransactionTabs/TransactionTabs'
 import { AddTransaction } from './components/AddTransaction/AddTransaction'
 import { Goal } from './components/Goal/Goal'
 import { GlobalProvider } from './context/GlobalState'
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { purple } from '@material-ui/core/colors'
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#1e88e5',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#6ab7ff',
+    },
+  },
+});
 
 function App() {
   return (
     <GlobalProvider>
+      <ThemeProvider theme={theme}>
       <HeaderTitle />
       <div className="react-budget__flexbox">
         <IncomeExpense />
@@ -22,6 +38,7 @@ function App() {
         <AddTransaction />
         <TransactionTabs />
       </div>
+      </ThemeProvider>
     </GlobalProvider>
   );
 }

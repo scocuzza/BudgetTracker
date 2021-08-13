@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './Balance.scss'
 import { GlobalContext } from '../../context/GlobalState'
 import { PieChart } from 'react-minimal-pie-chart';
-import { Card } from '@material-ui/core'
+import { Card, CardHeader, Typography } from '@material-ui/core'
 
 export const Balance = () => {
     const { transactions, monthlyGoalAmount } = useContext(GlobalContext);
@@ -21,18 +21,17 @@ export const Balance = () => {
 
     const pieData = [
         { title: '', value: percentRemaining, color: '#a0a3a8' },
-        { title: '', value: percentAchieved, color: '#64d17e' }
+        { title: '', value: percentAchieved, color: '#1e88e5' }
     ]
     return (
         <Card className="react-budget__balance">
-            <h2 className="react-budget__balance-text">Savings Tracker</h2>
+            <CardHeader title="Savings Tracker" className="react-budget__balance-text"></CardHeader>
             <PieChart 
                 label={({dataEntry}) => '$' + savings }
                 lineWidth={10} 
                 labelStyle={{
                     fontSize: '25px',
-                    fontFamily: 'sans-serif',
-                    fill: '#2ee010',
+                    fontFamily: 'sans-serif'
                   }}
                 center={[50, 30]}
                 radius={60}

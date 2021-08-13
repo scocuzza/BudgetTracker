@@ -14,6 +14,9 @@ const initialState = {
         , {
             id: 4, text: 'Groceries', amount: -200
         }
+        , {
+            id: 5, text: 'Subscriptions', amount: -150
+        }
     ],
     monthlyGoalAmount: 700
 }

@@ -1,28 +1,32 @@
-.react-budget {
-  &__header {
-    text-align: center;
-    margin-bottom: 1em;
-  }
-  &__transaction-history-flexbox {
-    display: flex;
-    justify-content: space-around;
-    margin: 30px;
-  }
-  &__flexbox {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    max-width: 50%;
-    margin: auto;
-  }
-  &__history-flexbox {
-    display: flex;
-    justify-content: space-around;
-    margin: 40px;
-  }
-  &__balance-goal-flexbox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+body {
+  font-family: 'Roboto';
+  background-color: #eceff1;
+  .react-budget {
+    &__header {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    &__transaction-history-flexbox {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px;
+    }
+    &__flexbox {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      max-width: 50%;
+      margin: auto;
+    }
+    &__history-flexbox {
+      display: flex;
+      justify-content: space-between;
+      margin: 40px;
+    }
+    &__balance-goal-flexbox {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 }
