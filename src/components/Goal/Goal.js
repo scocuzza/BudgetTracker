@@ -16,11 +16,11 @@ export const Goal = () => {
     }
     return (
             <Card className="react-budget__goal">
-                <CardHeader title="Set Monthly Goal"></CardHeader>
+                <CardHeader title="Set Your Monthly Goal"></CardHeader>
                 <CardContent>
-                    <Button onClick={handleMinus} color="primary">-</Button>
-                    <TextField onChange={handleChange} value={monthlyGoalAmount}>{monthlyGoalAmount}</TextField>
-                    <Button onClick={handleAdd} color="secondary">+</Button>
+                    <Button className="react-budget__goal-decreaseButton" onClick={handleMinus} color="secondary" variant="contained">-</Button>
+                    <TextField className="react-budget__goal-textField" variant="outlined"  onChange={handleChange} value={monthlyGoalAmount}>{monthlyGoalAmount}</TextField>
+                    <Button className="react-budget__goal-increaseButton" onClick={handleAdd} color="primary" variant="contained">+</Button>
                 </CardContent>
             </Card>
     )

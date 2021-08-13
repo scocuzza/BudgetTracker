@@ -26,10 +26,12 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
     // Actions
     function deleteTransaction(id) {
-        dispatch({
-            type: 'DELETE_TRANSACTION',
-            payload: id
-        })
+        id.forEach(id => {
+            dispatch({
+                type: 'DELETE_TRANSACTION',
+                payload: id
+            })
+        });
     }
     function addTransaction(transaction) {
         dispatch({

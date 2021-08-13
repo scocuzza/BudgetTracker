@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 
 import './AddTransaction.scss'
 
-export const Transaction = () => {
+export const AddTransaction = () => {
     const [transaction, setTransaction ] = useState({amount: 0, text: ''})
     const { addTransaction } = useContext(GlobalContext)
 

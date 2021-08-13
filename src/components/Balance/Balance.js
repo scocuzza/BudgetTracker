@@ -8,15 +8,17 @@ export const Balance = () => {
     const { transactions, monthlyGoalAmount } = useContext(GlobalContext);
     const transactionAmounts = transactions.map((transaction) => transaction.amount)
     const savings = transactionAmounts.reduce((acc, item) => (acc += item), 0)
+    const percentAchieved = savings < monthlyGoalAmount ? (savings / monthlyGoalAmount) * 100 : 100
+    const percentRemaining = 100 - percentAchieved
     const pieData = [
-        { title: 'Goal', value: monthlyGoalAmount, color: '#c9c9c9' },
-        { title: 'Balance', value: savings, color: '#2ee010' }
+        { title: '', value: percentRemaining, color: '#a0a3a8' },
+        { title: '', value: percentAchieved, color: '#64d17e' }
     ]
     return (
         <Card className="react-budget__balance">
             <h2 className="react-budget__balance-text">Savings Tracker</h2>
             <PieChart 
-                label={({dataEntry}) => dataEntry.title === 'Balance' ? '$' + dataEntry.value : '' }
+                label={({dataEntry}) => '$' + savings }
                 lineWidth={20} 
                 labelStyle={{
                     fontSize: '25px',
@@ -26,6 +28,7 @@ export const Balance = () => {
                 labelPosition={0}
                 startAngle={0} 
                 lengthAngle={180} 
+                totalValue={100}
                 data={pieData} />
         </Card>
     )

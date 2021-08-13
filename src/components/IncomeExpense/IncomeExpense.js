@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import './IncomeExpense.scss'
-import { Header } from 'semantic-ui-react'
 import { GlobalContext } from '../../context/GlobalState'
 import { Card, Grid, Typography } from '@material-ui/core';
 

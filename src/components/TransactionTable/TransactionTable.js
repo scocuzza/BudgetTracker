@@ -1,5 +1,5 @@
-import React from 'react'
-import './TransactionHistoryTable.scss'
+import React, {useState, useContext } from 'react'
+import './TransactionTable.scss'
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -7,11 +7,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Checkbox, IconButton, Tooltip } from '@material-ui/core';
 import { getComparator, stableSort } from '../../helper/tableHelper';
+import { GlobalContext } from '../../context/GlobalState';
 
   const headCells = [
-    { id: 'id', numeric: true, disablePadding: true, label: 'Id' },
-    { id: 'text', numeric: false, disablePadding: false, label: 'Item' },
-    { id: 'amount', numeric: true, disablePadding: false, label: 'Amount' },
+    { id: 'text', numeric: false, disablePadding: false, label: 'Item'},
+    { id: 'amount', numeric: true, disablePadding: false, label: 'Amount'},
   ];
 
 export const EnhancedTableHead = (props) => {
@@ -21,7 +21,7 @@ export const EnhancedTableHead = (props) => {
     };
 
     return (
-            <TableHead>
+            <TableHead >
             <TableRow>
                 <TableCell padding="checkbox">
                 <Checkbox
@@ -89,8 +89,13 @@ const useToolbarStyles = makeStyles((theme) => ({
   
   const EnhancedTableToolbar = (props) => {
     const classes = useToolbarStyles();
-    const { numSelected } = props;
-    console.log(props)
+    const { numSelected, selected, setSelected } = props;
+    const { deleteTransaction } = useContext(GlobalContext)
+
+    const handleDelete = (selected) => {
+      deleteTransaction(selected)
+      setSelected([])
+    }
     return (
       <Toolbar
         className={clsx(classes.root, {
@@ -109,7 +114,7 @@ const useToolbarStyles = makeStyles((theme) => ({
   
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton aria-label="delete">
+            <IconButton onClick={() => handleDelete(selected)} aria-label="delete">
               <DeleteIcon />
             </IconButton>
           </Tooltip>
@@ -211,10 +216,9 @@ const useToolbarStyles = makeStyles((theme) => ({
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, transactions.length - page * rowsPerPage);
   
     return (
-      <div className="react-budget__transaction-history-table">
-      <div className={classes.root}>
+      <div className={"react-budget__transaction-history-table " + classes.root}>
         <Paper className={classes.paper}>
-          <EnhancedTableToolbar numSelected={selected.length} title={props.title} />
+          <EnhancedTableToolbar selected={selected} setSelected={setSelected} numSelected={selected.length} title={props.title} />
           <TableContainer>
             <Table
               className={classes.table}
@@ -254,9 +258,6 @@ const useToolbarStyles = makeStyles((theme) => ({
                             inputProps={{ 'aria-labelledby': labelId }}
                           />
                         </TableCell>
-                        <TableCell component="th" id={labelId} scope="row" padding="none">
-                          {row.id}
-                        </TableCell>
                         <TableCell >{row.text}</TableCell>
                         <TableCell >{row.amount}</TableCell>
                       </TableRow>
@@ -265,7 +266,7 @@ const useToolbarStyles = makeStyles((theme) => ({
                 {emptyRows > 0 && (
                   <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
                     <TableCell colSpan={6} />
-                  </TableRow>
+                  </TableRow> 
                 )}
               </TableBody>
             </Table>
@@ -280,7 +281,6 @@ const useToolbarStyles = makeStyles((theme) => ({
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-      </div>
       </div>
     );
   }
