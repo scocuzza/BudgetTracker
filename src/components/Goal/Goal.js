@@ -5,13 +5,13 @@ import { GlobalContext } from '../../context/GlobalState'
 
 export const Goal = () => {
     const { monthlyGoalAmount, setGoal } = useContext(GlobalContext)
-    const handleChange = (e) => {
-        setGoal(e.target.value)
+    function handleChange(e) {
+        setGoal( e.target.value)
     }
-    const handleMinus = () => {
+    function handleMinus() {
         setGoal(+monthlyGoalAmount - 10)
     }
-    const handleAdd = () => {
+    function handleAdd() {
         setGoal(+monthlyGoalAmount + 10)
     }
     return (

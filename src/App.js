@@ -1,5 +1,5 @@
 import './App.scss';
-import React, { useContext } from 'react';
+import React from 'react';
 import { HeaderTitle } from './components/HeaderTitle/HeaderTitle'
 import { Balance } from './components/Balance/Balance'
 import { IncomeExpense } from './components/IncomeExpense/IncomeExpense'
@@ -9,7 +9,6 @@ import { Goal } from './components/Goal/Goal'
 import { GlobalProvider } from './context/GlobalState'
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { purple } from '@material-ui/core/colors'
 
 const theme = createTheme({
   palette: {
