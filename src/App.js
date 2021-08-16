@@ -5,7 +5,7 @@ import { Balance } from './components/SavingsGoal/SavingsGoal'
 import { IncomeExpense } from './components/IncomeExpense/IncomeExpense'
 import TransactionTabs from './components/TransactionTabs/TransactionTabs'
 import { AddTransaction } from './components/AddTransaction/AddTransaction'
-import { Goal } from './components/Goal/Goal'
+import { Goal } from './components/MonthlyGoal/MonthlyGoal'
 import { GlobalProvider } from './context/GlobalState'
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';

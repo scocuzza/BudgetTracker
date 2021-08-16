@@ -13,40 +13,45 @@ export const IncomeExpense = () => {
 
     return (
         <div className="react-budget__income-expense">
-            <Card className="react-budget__income-expense__income">
-                <Grid container alignItems="center">
-                    <Grid item xs>
-                        <Typography component={'span'} gutterBottom variant="h4">
-                            ${incomeAmounts}
+                <Card className="react-budget__income-expense__income">
+                    <div className="react-budget__income-expense__income-color">
+                    </div>
+                    <Grid container alignItems="center">
+                        <Grid item xs>
+                            <Typography component={'span'} gutterBottom variant="h4">
+                                ${incomeAmounts}
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography component={'span'} gutterBottom variant="h6">
+                                Total Income
+                            </Typography>
+                        </Grid>
+                        <Typography component={'span'} color="textSecondary" variant="body2">
+                            This is the sum of all your positive transactions.
                         </Typography>
                     </Grid>
-                    <Grid item>
-                        <Typography component={'span'} gutterBottom variant="h6">
-                            Total Income
+                </Card>
+                <Card className="react-budget__income-expense__expense">
+                    <div className="react-budget__income-expense__expense-color">
+                    </div>
+                    <Grid container alignItems="center">
+                        <Grid item xs>
+                            <Typography component={'span'} gutterBottom variant="h4">
+                                ${Math.abs(expenseAmounts)}
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography component={'span'} gutterBottom variant="h6">
+                                Total Expenses
+                            </Typography>
+                        </Grid>
+                        <Typography component={'span'} color="textSecondary" variant="body2">
+                            This is the sum of all your negative transactions.
                         </Typography>
                     </Grid>
-                </Grid>
-                <Typography component={'span'} color="textSecondary" variant="body2">
-                    This is the sum of all your positive transactions.
-                </Typography>
-            </Card>
-            <Card className="react-budget__income-expense__expense">
-                <Grid container alignItems="center">
-                    <Grid item xs>
-                        <Typography component={'span'} gutterBottom variant="h4">
-                            ${Math.abs(expenseAmounts)}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography component={'span'} gutterBottom variant="h6">
-                            Total Expenses
-                        </Typography>
-                    </Grid>
-                </Grid>
-                <Typography component={'span'} color="textSecondary" variant="body2">
-                    This is the sum of all your negative transactions.
-                </Typography>
-            </Card>
-        </div>
+
+                </Card>
+            </div>
     )
 }

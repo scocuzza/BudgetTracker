@@ -11,4 +11,10 @@
         padding: 0 10px;
         max-width: 100px;
     }
+    &-msg {
+        max-width: 80%;
+        &.MuiTypography-body1 {
+            margin: auto;
+        }
+    }
 }
