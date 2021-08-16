@@ -1,6 +1,6 @@
 import React, { useContext} from 'react'
 import { Button, TextField, Card, CardHeader, CardContent } from '@material-ui/core'
-import './Goal.scss'
+import './MonthlyGoal.scss'
 import { GlobalContext } from '../../context/GlobalState'
 
 export const Goal = () => {

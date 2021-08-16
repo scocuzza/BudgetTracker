@@ -12,6 +12,7 @@ import { GlobalContext } from '../../context/GlobalState';
   const headCells = [
     { id: 'text', numeric: false, disablePadding: false, label: 'Item'},
     { id: 'amount', numeric: true, disablePadding: false, label: 'Amount'},
+    { id: 'category', numeric: true, disablePadding: false, label: 'Category'},
   ];
 
 export const EnhancedTableHead = (props) => {
@@ -159,12 +160,12 @@ const useToolbarStyles = makeStyles((theme) => ({
   
   export default function EnhancedTable(props) {
     const classes = useStyles();
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('amount');
-    const [selected, setSelected] = React.useState([]);
-    const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(true);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('amount');
+    const [selected, setSelected] = useState([]);
+    const [page, setPage] = useState(0);
+    const [dense] = useState(true);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const transactions = props.transactions
 
     const handleRequestSort = (event, property) => {
@@ -260,6 +261,7 @@ const useToolbarStyles = makeStyles((theme) => ({
                         </TableCell>
                         <TableCell >{row.text}</TableCell>
                         <TableCell >{row.amount}</TableCell>
+                        <TableCell >{row.category}</TableCell>
                       </TableRow>
                     );
                   })}

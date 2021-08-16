@@ -5,17 +5,20 @@ import AppReducer from './AppReducer';
 const initialState = {
     transactions: [
         {
-            id: 1, text: 'Salary', amount: 2000,
+            id: 1, text: 'Salary', amount: 2000, category: 'Work'
         }, {
-            id: 2, text: 'Rent', amount: -1000
+            id: 2, text: 'Rent', amount: -1000, category: 'Housing'
         }, {
-            id: 3, text: 'Utilities', amount: -200
+            id: 3, text: 'Utilities', amount: -200, category: 'Housing'
         }
         , {
-            id: 4, text: 'Groceries', amount: -200
+            id: 4, text: 'Groceries', amount: -200, category: 'Groceries'
         }
         , {
-            id: 5, text: 'Subscriptions', amount: -150
+            id: 5, text: 'Subscriptions', amount: -150, category: 'Lifestyle'
+        }
+        , {
+            id: 5, text: 'Car', amount: -150, category: 'Transportation'
         }
     ],
     monthlyGoalAmount: 700
@@ -49,6 +52,7 @@ export const GlobalProvider = ({ children }) => {
             payload: monthlyGoalAmount
         })
     }
+    
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         monthlyGoalAmount: state.monthlyGoalAmount,

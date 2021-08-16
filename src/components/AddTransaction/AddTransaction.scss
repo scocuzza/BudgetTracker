@@ -1,12 +1,11 @@
 .react-budget__transaction {
     text-align: center;
     margin: 20px 0 0 0;
-    margin-bottom: 30px;
     &-input {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        padding: 0 100px;
+        justify-content: space-between;
+        padding: 0 10;
         margin-bottom: 10px;
     }
 }

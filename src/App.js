@@ -1,7 +1,7 @@
 import './App.scss';
 import React from 'react';
 import { HeaderTitle } from './components/HeaderTitle/HeaderTitle'
-import { Balance } from './components/Balance/Balance'
+import { Balance } from './components/SavingsGoal/SavingsGoal'
 import { IncomeExpense } from './components/IncomeExpense/IncomeExpense'
 import TransactionTabs from './components/TransactionTabs/TransactionTabs'
 import { AddTransaction } from './components/AddTransaction/AddTransaction'
@@ -9,6 +9,7 @@ import { Goal } from './components/Goal/Goal'
 import { GlobalProvider } from './context/GlobalState'
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { ExpenseBreakdown } from './components/ExpenseBreakdown/ExpenseBreakdown';
 
 const theme = createTheme({
   palette: {
@@ -32,6 +33,7 @@ function App() {
         <IncomeExpense />
         <div className="react-budget__balance-goal-flexbox">
           <Balance />
+          <ExpenseBreakdown />
           <Goal />
         </div>
         <AddTransaction />
