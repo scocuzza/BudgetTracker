@@ -3,6 +3,6 @@ import React from 'react'
 
 export const HeaderTitle = () => {
     return (
-        <Typography variant="h4" className="react-budget__header">React Budget Tracker</Typography>
+        <Typography component={'span'} variant="h4" className="react-budget__header">React Budget Tracker</Typography>
     )
 }

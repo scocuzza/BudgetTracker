@@ -16,34 +16,34 @@ export const IncomeExpense = () => {
             <Card className="react-budget__income-expense__income">
                 <Grid container alignItems="center">
                     <Grid item xs>
-                        <Typography gutterBottom variant="h4">
+                        <Typography component={'span'} gutterBottom variant="h4">
                             ${incomeAmounts}
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Typography gutterBottom variant="h6">
+                        <Typography component={'span'} gutterBottom variant="h6">
                             Total Income
                         </Typography>
                     </Grid>
                 </Grid>
-                <Typography color="textSecondary" variant="body2">
+                <Typography component={'span'} color="textSecondary" variant="body2">
                     This is the sum of all your positive transactions.
                 </Typography>
             </Card>
             <Card className="react-budget__income-expense__expense">
                 <Grid container alignItems="center">
                     <Grid item xs>
-                        <Typography gutterBottom variant="h4">
+                        <Typography component={'span'} gutterBottom variant="h4">
                             ${Math.abs(expenseAmounts)}
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Typography gutterBottom variant="h6">
+                        <Typography component={'span'} gutterBottom variant="h6">
                             Total Expenses
                         </Typography>
                     </Grid>
                 </Grid>
-                <Typography color="textSecondary" variant="body2">
+                <Typography component={'span'} color="textSecondary" variant="body2">
                     This is the sum of all your negative transactions.
                 </Typography>
             </Card>

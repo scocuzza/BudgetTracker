@@ -104,11 +104,11 @@ const useToolbarStyles = makeStyles((theme) => ({
         })}
       >
         {numSelected > 0 ? (
-          <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+          <Typography component={'span'} className={classes.title} color="inherit" variant="subtitle1" component="div">
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+          <Typography component={'span'} className={classes.title} variant="h6" id="tableTitle" component="div">
             {props.title}
           </Typography>
         )}
@@ -261,7 +261,7 @@ const useToolbarStyles = makeStyles((theme) => ({
                         </TableCell>
                         <TableCell >{row.text}</TableCell>
                         <TableCell >{row.amount}</TableCell>
-                        <TableCell >{row.category}</TableCell>
+                        {props.type === 'Expenses' ? <TableCell >{row.category}</TableCell> : <TableCell>Income</TableCell> }
                       </TableRow>
                     );
                   })}

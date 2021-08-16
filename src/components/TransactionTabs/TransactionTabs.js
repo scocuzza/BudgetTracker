@@ -74,7 +74,7 @@ export default function SimpleTabs() {
         <TransactionTable type='Income' transactions={incomeTransactions}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TransactionTable  type='Expense' transactions={expenseTransactions}/>
+        <TransactionTable  type='Expenses' transactions={expenseTransactions}/>
       </TabPanel>
     </div>
     </div>

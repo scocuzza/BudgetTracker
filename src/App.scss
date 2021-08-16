@@ -4,12 +4,11 @@ body {
   .react-budget {
     &__header {
       text-align: center;
-      margin-bottom: 1em;
+      margin-bottom: .5em;
     }
     &__transaction-history-flexbox {
       display: flex;
       justify-content: space-between;
-      margin: 30px;
     }
     &__flexbox {
       display: flex;
@@ -21,7 +20,6 @@ body {
     &__history-flexbox {
       display: flex;
       justify-content: space-between;
-      margin: 40px;
     }
     &__balance-goal-flexbox {
       display: flex;

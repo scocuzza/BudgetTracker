@@ -5,7 +5,7 @@ import AppReducer from './AppReducer';
 const initialState = {
     transactions: [
         {
-            id: 1, text: 'Salary', amount: 2000, category: 'Work'
+            id: 1, text: 'Salary', amount: 2000, category: 'Income'
         }, {
             id: 2, text: 'Rent', amount: -1000, category: 'Housing'
         }, {
@@ -18,7 +18,7 @@ const initialState = {
             id: 5, text: 'Subscriptions', amount: -150, category: 'Lifestyle'
         }
         , {
-            id: 5, text: 'Car', amount: -150, category: 'Transportation'
+            id: 6, text: 'Car', amount: -150, category: 'Transportation'
         }
     ],
     monthlyGoalAmount: 700
