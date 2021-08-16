@@ -10,7 +10,8 @@ export const IncomeExpense = () => {
         .reduce((acc, item) => (acc += item), 0)
     const expenseAmounts = amounts.filter((amount) => amount < 0)
         .reduce((acc, item) => (acc += item), 0)
-
+    const balance = incomeAmounts - expenseAmounts
+    console.log(incomeAmounts, expenseAmounts,balance)
     return (
         <div className="react-budget__income-expense">
                 <Card className="react-budget__income-expense__income">
@@ -50,7 +51,25 @@ export const IncomeExpense = () => {
                             This is the sum of all your negative transactions.
                         </Typography>
                     </Grid>
-
+                </Card>
+                <Card className="react-budget__income-expense__balance">
+                    <div className="react-budget__income-expense__balance-color">
+                    </div>
+                    <Grid container alignItems="center">
+                        <Grid item xs>
+                            <Typography component={'span'} gutterBottom variant="h4">
+                                ${incomeAmounts - Math.abs(expenseAmounts)}
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography component={'span'} gutterBottom variant="h6">
+                                Balance
+                            </Typography>
+                        </Grid>
+                        <Typography component={'span'} color="textSecondary" variant="body2">
+                            This is your remaining balance after expenses.
+                        </Typography>
+                    </Grid>
                 </Card>
             </div>
     )

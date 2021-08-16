@@ -4,11 +4,12 @@
     justify-content: space-between;
 
     &__income,
-    &__expense {
+    &__expense,
+    &__balance {
         display: flex;
         padding: 15px;
         margin-bottom: 30px;
-        max-width: 30%;
+        max-width: 27%;
 
     }
     &__expense-color {
@@ -17,6 +18,11 @@
         background-color: #e53935;
     }
     &__income-color {
+        width: 10px;
+        margin-right: 10px;
+        background-color: #64dd17;
+    }
+    &__balance-color {
         width: 10px;
         margin-right: 10px;
         background-color: #64dd17;
