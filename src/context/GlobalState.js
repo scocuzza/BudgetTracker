@@ -1,29 +1,11 @@
 import React, { createContext, useReducer } from 'react'
-import AppReducer from './AppReducer';
-
+import { AppReducer } from './AppReducer';
+import axios from 'axios'
 //Initial State
 const initialState = {
-    transactions: [
-        {
-            id: 1, text: 'Salary', amount: 2000, category: 'Income'
-        }, {
-            id: 2, text: 'Rent', amount: -1000, category: 'Housing'
-        }, {
-            id: 3, text: 'Utilities', amount: -200, category: 'Housing'
-        }
-        , {
-            id: 4, text: 'Groceries', amount: -200, category: 'Groceries'
-        }
-        , {
-            id: 5, text: 'Subscriptions', amount: -150, category: 'Lifestyle'
-        }
-        , {
-            id: 6, text: 'Car', amount: -150, category: 'Transportation'
-        }
-        , {
-            id: 7, text: 'Investments', amount: 1000, category: 'Income'
-        }
-    ],
+    transactions: [],
+    error: null,
+    loading: true,
     monthlyGoalAmount: 700
 }
 
@@ -34,6 +16,22 @@ export const GlobalContext = createContext(initialState)
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
     // Actions
+    // Actions
+    async function getTransactions() {
+        try {
+            const res = await axios('/api/v1/transactions');
+            dispatch({
+                type: 'GET_TRANSACTIONS',
+                payload: res.data
+            });
+        } catch (err) {
+            dispatch({
+                type: 'TRANSACTION_ERROR',
+                payload: err.response
+            })
+        }
+    }
+
     function deleteTransaction(id) {
         id.forEach(id => {
             dispatch({
@@ -49,18 +47,21 @@ export const GlobalProvider = ({ children }) => {
         })
     }
     function setGoal(monthlyGoalAmount) {
-        console.log('setting goal ' + monthlyGoalAmount )
+        console.log('setting goal ' + monthlyGoalAmount)
         dispatch({
             type: 'SET_GOAL',
             payload: monthlyGoalAmount
         })
     }
-    
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         monthlyGoalAmount: state.monthlyGoalAmount,
         deleteTransaction,
         addTransaction,
-        setGoal
+        setGoal,
+        getTransactions,
+        error: state.error,
+        loading: state.loading
     }}>{children}</GlobalContext.Provider>)
 }

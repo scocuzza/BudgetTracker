@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { PieChart } from 'react-minimal-pie-chart';
 import { Card, CardHeader } from '@material-ui/core';
 import { GlobalContext } from '../../context/GlobalState';
@@ -6,7 +6,11 @@ import { Legend } from '../Legend/Legend';
 import { expenseCategory } from '../../constants/constants';
 
 export const ExpenseBreakdown = () => {
-    const { transactions } = useContext(GlobalContext);
+    const { transactions, getTransactions } = useContext(GlobalContext);
+    useEffect(()=>{
+        getTransactions();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     const expenses = transactions.filter((transactions) => transactions.amount < 0)
     var result = new Map();
     expenses.forEach((element) => {

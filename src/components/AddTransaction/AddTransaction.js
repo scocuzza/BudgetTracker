@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 export const AddTransaction = () => {
     const [transaction, setTransaction] = useState({ amount: 0, text: '', category: '' })
     const { addTransaction } = useContext(GlobalContext)
-    const [category, setCategory] = useState('');
     const classes = useStyles();
     const onSubmit = e => {
         e.preventDefault();

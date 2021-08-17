@@ -1,17 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './IncomeExpense.scss'
 import { GlobalContext } from '../../context/GlobalState'
 import { Card, Grid, Typography } from '@material-ui/core';
 
 export const IncomeExpense = () => {
-    const { transactions } = useContext(GlobalContext)
+    const { transactions, getTransactions } = useContext(GlobalContext)
+    useEffect(() => {
+        getTransactions();
+    }, [])
     const amounts = transactions.map((transaction) => transaction.amount)
     const incomeAmounts = amounts.filter((amount) => amount > 0)
         .reduce((acc, item) => (acc += item), 0)
     const expenseAmounts = amounts.filter((amount) => amount < 0)
         .reduce((acc, item) => (acc += item), 0)
-    const balance = incomeAmounts - expenseAmounts
-    console.log(incomeAmounts, expenseAmounts,balance)
+    const balance = incomeAmounts - Math.abs(expenseAmounts)
     return (
         <div className="react-budget__income-expense">
                 <Card className="react-budget__income-expense__income">
@@ -53,12 +55,12 @@ export const IncomeExpense = () => {
                     </Grid>
                 </Card>
                 <Card className="react-budget__income-expense__balance">
-                    <div className="react-budget__income-expense__balance-color">
+                    <div style={{backgroundColor: balance > 0 ? "#64dd17" : "#e53935"}} className="react-budget__income-expense__balance-color">
                     </div>
                     <Grid container alignItems="center">
                         <Grid item xs>
                             <Typography component={'span'} gutterBottom variant="h4">
-                                ${incomeAmounts - Math.abs(expenseAmounts)}
+                                ${balance}
                             </Typography>
                         </Grid>
                         <Grid item>

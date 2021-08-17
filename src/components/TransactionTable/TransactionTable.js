@@ -259,7 +259,7 @@ const useToolbarStyles = makeStyles((theme) => ({
                             inputProps={{ 'aria-labelledby': labelId }}
                           />
                         </TableCell>
-                        <TableCell >{row.text}</TableCell>
+                        <TableCell >{row.description}</TableCell>
                         <TableCell >{row.amount}</TableCell>
                         {props.type === 'Expenses' ? <TableCell >{row.category}</TableCell> : <TableCell>Income</TableCell> }
                       </TableRow>

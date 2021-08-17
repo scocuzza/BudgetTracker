@@ -10,6 +10,7 @@ import { GlobalProvider } from './context/GlobalState'
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { ExpenseBreakdown } from './components/ExpenseBreakdown/ExpenseBreakdown';
+import Navigation from './components/Navigation/Navigation'
 
 const theme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ function App() {
   return (
     <GlobalProvider>
       <ThemeProvider theme={theme}>
-      <HeaderTitle />
+      <Navigation />
       <div className="react-budget__flexbox">
         <IncomeExpense />
         <div className="react-budget__balance-goal-flexbox">
