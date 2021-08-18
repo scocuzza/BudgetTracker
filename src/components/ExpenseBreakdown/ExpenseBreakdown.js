@@ -6,11 +6,7 @@ import { Legend } from '../Legend/Legend';
 import { expenseCategory } from '../../constants/constants';
 
 export const ExpenseBreakdown = () => {
-    const { transactions, getTransactions } = useContext(GlobalContext);
-    useEffect(()=>{
-        getTransactions();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const { transactions } = useContext(GlobalContext);
     const expenses = transactions.filter((transactions) => transactions.amount < 0)
     var result = new Map();
     expenses.forEach((element) => {

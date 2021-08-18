@@ -35,20 +35,29 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
-    function deleteTransaction(id) {
-        id.forEach(id => {
+    async function deleteTransaction(id) {
+        try {
+            id.forEach(async id => {
+                const res = await axios.delete('/api/v1/transactions/' + id)
+                dispatch({
+                    type: 'DELETE_TRANSACTION',
+                    payload: id
+                })
+            });
+        } catch (err) {
             dispatch({
-                type: 'DELETE_TRANSACTION',
-                payload: id
+                type: 'TRANSACTION_ERROR',
+                payload: err.response
             })
-        });
+        }
     }
     async function addTransaction(transaction) {
         try {
             const res = await axios.post('/api/v1/transactions', transaction);
+            console.log(res.data)
             dispatch({
                 type: 'ADD_TRANSACTION',
-                payload: transaction
+                payload: res.data
             })
         } catch (err) {
             dispatch({
