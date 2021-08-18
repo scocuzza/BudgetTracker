@@ -19,7 +19,7 @@ export const Balance = () => {
     const percentRemaining = 100 - percentAchieved
     const pieData = [
         { title: '', value: percentRemaining, color: '#a0a3a8' },
-        { title: '', value: percentAchieved, color: '#1e88e5' }
+        { title: '', value: percentAchieved, color: '#64dd17' }
     ]
     return (
         <Card className="react-budget__balance">

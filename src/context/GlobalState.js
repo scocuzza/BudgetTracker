@@ -17,6 +17,7 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
     useEffect(()=>{
         getTransactions();
+        getUsers();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // Actions
@@ -34,7 +35,13 @@ export const GlobalProvider = ({ children }) => {
             })
         }
     }
-
+    async function getUsers() {
+        try {
+            const res = await axios('/api/v1/users');
+            console.log(res.data)
+        } catch (err) {
+        }
+    }
     async function deleteTransaction(id) {
         try {
             id.forEach(async id => {
@@ -81,6 +88,6 @@ export const GlobalProvider = ({ children }) => {
         setGoal,
         getTransactions,
         error: state.error,
-        loading: state.loading
+        loading: state.loading,
     }}>{children}</GlobalContext.Provider>)
 }
