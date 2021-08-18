@@ -57,11 +57,7 @@ export default function SimpleTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const { transactions, getTransactions } = useContext(GlobalContext)
-  useEffect(() => {
-    getTransactions();
-}, [])
-console.log(transactions)
+  const { transactions } = useContext(GlobalContext)
   const expenseTransactions = transactions.filter((transaction) => transaction.amount < 0 )
   const incomeTransactions = transactions.filter((transaction) => transaction.amount > 0 )
   return (

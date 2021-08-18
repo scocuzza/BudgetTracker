@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
 import { AppReducer } from './AppReducer';
 import axios from 'axios'
 //Initial State
@@ -15,7 +15,10 @@ export const GlobalContext = createContext(initialState)
 //Provider component
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
-    // Actions
+    useEffect(()=>{
+        getTransactions();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     // Actions
     async function getTransactions() {
         try {
@@ -40,14 +43,21 @@ export const GlobalProvider = ({ children }) => {
             })
         });
     }
-    function addTransaction(transaction) {
-        dispatch({
-            type: 'ADD_TRANSACTION',
-            payload: transaction
-        })
+    async function addTransaction(transaction) {
+        try {
+            const res = await axios.post('/api/v1/transactions', transaction);
+            dispatch({
+                type: 'ADD_TRANSACTION',
+                payload: transaction
+            })
+        } catch (err) {
+            dispatch({
+                type: 'TRANSACTION_ERROR',
+                payload: err.response
+            })
+        }
     }
     function setGoal(monthlyGoalAmount) {
-        console.log('setting goal ' + monthlyGoalAmount)
         dispatch({
             type: 'SET_GOAL',
             payload: monthlyGoalAmount

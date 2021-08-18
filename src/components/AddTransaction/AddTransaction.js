@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const AddTransaction = () => {
-    const [transaction, setTransaction] = useState({ amount: 0, text: '', category: '' })
+    const [transaction, setTransaction] = useState({ amount: 0, desciption: '', category: '' })
     const { addTransaction } = useContext(GlobalContext)
     const classes = useStyles();
     const onSubmit = e => {
         e.preventDefault();
         const newTransaction = {
             id: Math.floor(Math.random() * 100000000),
-            text: transaction.text,
+            description: transaction.description,
             amount: +transaction.amount,
             category: transaction.category
         }
@@ -41,7 +41,7 @@ export const AddTransaction = () => {
             <div className="react-budget__transaction-input">
                 <TextField className="react-budget__transaction-input__amount" variant="outlined" onChange={(e) => setTransaction({ ...transaction, amount: e.target.value })} type="number" name="transaction-amount" id="transaction-amount" placeholder="Enter an Amount">
                 </TextField>
-                <TextField className="react-budget__transaction-input__text" variant="outlined" onChange={(e) => setTransaction({ ...transaction, text: e.target.value })} type="text" name="transaction-name" id="transaction-name" placeholder="Enter Description">
+                <TextField className="react-budget__transaction-input__text" variant="outlined" onChange={(e) => setTransaction({ ...transaction, description: e.target.value })} type="text" name="transaction-name" id="transaction-name" placeholder="Enter Description">
                 </TextField>
                 <FormControl className={classes.formControl} disabled={transaction.amount >= 0 ? true : false}>
                     <InputLabel id="react-budget__transaction-input__category">Expense Category</InputLabel>

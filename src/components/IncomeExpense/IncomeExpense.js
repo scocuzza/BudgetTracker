@@ -1,13 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import './IncomeExpense.scss'
 import { GlobalContext } from '../../context/GlobalState'
 import { Card, Grid, Typography } from '@material-ui/core';
 
 export const IncomeExpense = () => {
-    const { transactions, getTransactions } = useContext(GlobalContext)
-    useEffect(() => {
-        getTransactions();
-    }, [])
+    const { transactions } = useContext(GlobalContext)
     const amounts = transactions.map((transaction) => transaction.amount)
     const incomeAmounts = amounts.filter((amount) => amount > 0)
         .reduce((acc, item) => (acc += item), 0)

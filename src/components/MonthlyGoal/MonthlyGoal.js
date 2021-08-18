@@ -1,14 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Button, TextField, Card, CardHeader, CardContent, Typography } from '@material-ui/core'
 import './MonthlyGoal.scss'
 import { GlobalContext } from '../../context/GlobalState'
 
 export const Goal = () => {
     const { monthlyGoalAmount, setGoal } = useContext(GlobalContext)
-    const {transactions, getTransactions } = useContext(GlobalContext)
-    useEffect(() => {
-        getTransactions();
-    }, [])
+    const {transactions } = useContext(GlobalContext)
     const transactionAmounts = transactions.map((transaction) => transaction.amount)
     const savings = transactionAmounts.reduce((acc, item) => (acc += item), 0)
 
