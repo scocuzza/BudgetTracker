@@ -1,12 +1,11 @@
 import './App.scss';
-import React from 'react';
-import { HeaderTitle } from './components/HeaderTitle/HeaderTitle'
+import React, { useContext, useEffect, useState } from 'react';
 import { Balance } from './components/SavingsGoal/SavingsGoal'
 import { IncomeExpense } from './components/IncomeExpense/IncomeExpense'
 import TransactionTabs from './components/TransactionTabs/TransactionTabs'
 import { AddTransaction } from './components/AddTransaction/AddTransaction'
 import { Goal } from './components/MonthlyGoal/MonthlyGoal'
-import { GlobalProvider } from './context/GlobalState'
+import { GlobalContext, GlobalProvider } from './context/GlobalState'
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { ExpenseBreakdown } from './components/ExpenseBreakdown/ExpenseBreakdown';
@@ -28,7 +27,7 @@ const theme = createTheme({
 function App() {
   return (
     <GlobalProvider>
-      <ThemeProvider theme={theme}>
+       <ThemeProvider theme={theme}>
       <Navigation />
       <div className="react-budget__flexbox">
         <IncomeExpense />

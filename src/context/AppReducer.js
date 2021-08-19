@@ -1,18 +1,13 @@
 export const AppReducer = (state, action) => {
     switch(action.type) {
-        case 'GET_TRANSACTIONS':
-            return {
-                ...state,
-                loading: false,
-                transactions: action.payload
-            }
         case 'GET_USER':
+            console.log('getting user')
                 return {
                     ...state,
                     loading: false,
                     user: action.payload
         }
-        case 'SET_USER':
+        case 'SET_MONTHLYGOAL':
              return {
                  ...state,
                  user: action.payload

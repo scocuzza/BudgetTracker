@@ -57,25 +57,34 @@ export default function SimpleTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const { transactions } = useContext(GlobalContext)
-  const expenseTransactions = transactions.filter((transaction) => transaction.amount < 0 )
-  const incomeTransactions = transactions.filter((transaction) => transaction.amount > 0 )
-  return (
-    <div className="react-budget__transaction-history ">
-      <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Income" {...a11yProps(0)} />
-          <Tab label="Expenses" {...a11yProps(1)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <TransactionTable type='Income' transactions={incomeTransactions}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <TransactionTable  type='Expenses' transactions={expenseTransactions}/>
-      </TabPanel>
-    </div>
-    </div>
-  );
+  const { user, loading, getUser } = useContext(GlobalContext)
+  useEffect(()=>{
+    console.log('in the useEffect')
+    getUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  if(!loading) {
+    const expenseTransactions = user.transactions.filter((transaction) => transaction.amount < 0 )
+    const incomeTransactions = user.transactions.filter((transaction) => transaction.amount > 0 )
+    return (
+      <div className="react-budget__transaction-history ">
+        <div className={classes.root}>
+        <AppBar position="static">
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tab label="Income" {...a11yProps(0)} />
+            <Tab label="Expenses" {...a11yProps(1)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <TransactionTable type='Income' transactions={incomeTransactions}/>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <TransactionTable  type='Expenses' transactions={expenseTransactions}/>
+        </TabPanel>
+      </div>
+      </div>
+      )
+  } else {
+    return(<div>Loading...</div>)
+  }
 }

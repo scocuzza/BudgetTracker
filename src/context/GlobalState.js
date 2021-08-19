@@ -3,7 +3,6 @@ import { AppReducer } from './AppReducer';
 import axios from 'axios'
 //Initial State
 const initialState = {
-    transactions: [],
     user: {},
     error: null,
     loading: true
@@ -15,28 +14,16 @@ export const GlobalContext = createContext(initialState)
 //Provider component
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
-    useEffect(()=>{
-        getTransactions();
+    console.log('in the global provider')
+    useEffect(() => {
+        console.log('in the useEffect')
         getUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // Actions
-    async function getTransactions() {
+    async function getUser() {
         try {
-            const res = await axios('/api/v1/transactions');
-            dispatch({
-                type: 'GET_TRANSACTIONS',
-                payload: res.data
-            });
-        } catch (err) {
-            dispatch({
-                type: 'TRANSACTION_ERROR',
-                payload: err.response
-            })
-        }
-    }
-    async function getUser(id) {
-        try {
+            console.log('running get user')
             const res = await axios('/api/v1/users/4');
             dispatch({
                 type: 'GET_USER',
@@ -68,7 +55,6 @@ export const GlobalProvider = ({ children }) => {
     async function addTransaction(transaction) {
         try {
             const res = await axios.post('/api/v1/transactions', transaction);
-            console.log(res.data)
             dispatch({
                 type: 'ADD_TRANSACTION',
                 payload: res.data
@@ -80,21 +66,18 @@ export const GlobalProvider = ({ children }) => {
             })
         }
     }
-    function setUser(user) {
-        console.log(user)
+    function setMonthlyGoal(monthlyGoalAmount) {
         dispatch({
-            type:'SET_USER',
-            payload: user
+            type:'SET_MONTHLYGOAL',
+            payload:{ ...state.user, monthlyGoalAmount: monthlyGoalAmount }
         })
     }
 
     return (<GlobalContext.Provider value={{
-        transactions: state.transactions,
-        monthlyGoalAmount: state.monthlyGoalAmount,
         deleteTransaction,
         addTransaction,
-        setUser,
-        getTransactions,
+        setMonthlyGoal,
+        getUser,
         error: state.error,
         loading: state.loading,
         user: state.user
