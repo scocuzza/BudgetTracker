@@ -6,6 +6,17 @@ export const AppReducer = (state, action) => {
                 loading: false,
                 transactions: action.payload
             }
+        case 'GET_USER':
+                return {
+                    ...state,
+                    loading: false,
+                    user: action.payload
+        }
+        case 'SET_USER':
+             return {
+                 ...state,
+                 user: action.payload
+             }
         case 'TRANSACTION_ERROR':
             return {
                 ...state, 
@@ -21,11 +32,6 @@ export const AppReducer = (state, action) => {
              ...state, 
              transactions: [action.payload, ...state.transactions]
          }
-         case 'SET_GOAL':
-             return {
-                 ...state,
-                 monthlyGoalAmount: action.payload
-             }
         default:
             return state;
     }

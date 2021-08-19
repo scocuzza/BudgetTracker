@@ -4,9 +4,9 @@ import axios from 'axios'
 //Initial State
 const initialState = {
     transactions: [],
+    user: {},
     error: null,
-    loading: true,
-    monthlyGoalAmount: 700
+    loading: true
 }
 
 //Create context
@@ -17,7 +17,7 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
     useEffect(()=>{
         getTransactions();
-        getUsers();
+        getUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // Actions
@@ -35,11 +35,18 @@ export const GlobalProvider = ({ children }) => {
             })
         }
     }
-    async function getUsers() {
+    async function getUser(id) {
         try {
-            const res = await axios('/api/v1/users');
-            console.log(res.data)
+            const res = await axios('/api/v1/users/4');
+            dispatch({
+                type: 'GET_USER',
+                payload: res.data
+            });
         } catch (err) {
+            dispatch({
+                type: 'USER_ERROR',
+                payload: err.response
+            })
         }
     }
     async function deleteTransaction(id) {
@@ -73,10 +80,11 @@ export const GlobalProvider = ({ children }) => {
             })
         }
     }
-    function setGoal(monthlyGoalAmount) {
+    function setUser(user) {
+        console.log(user)
         dispatch({
-            type: 'SET_GOAL',
-            payload: monthlyGoalAmount
+            type:'SET_USER',
+            payload: user
         })
     }
 
@@ -85,9 +93,10 @@ export const GlobalProvider = ({ children }) => {
         monthlyGoalAmount: state.monthlyGoalAmount,
         deleteTransaction,
         addTransaction,
-        setGoal,
+        setUser,
         getTransactions,
         error: state.error,
         loading: state.loading,
+        user: state.user
     }}>{children}</GlobalContext.Provider>)
 }

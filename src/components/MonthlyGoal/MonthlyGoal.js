@@ -4,21 +4,22 @@ import './MonthlyGoal.scss'
 import { GlobalContext } from '../../context/GlobalState'
 
 export const Goal = () => {
-    const { monthlyGoalAmount, setGoal } = useContext(GlobalContext)
+    const { user, setUser } = useContext(GlobalContext)
     const {transactions } = useContext(GlobalContext)
     const transactionAmounts = transactions.map((transaction) => transaction.amount)
     const savings = transactionAmounts.reduce((acc, item) => (acc += item), 0)
-
+    const monthlyGoalAmount = user.monthlyGoalAmount;
     function handleChange(e) {
-        setGoal( e.target.value)
+        setUser({ ...user, monthlyGoalAmount: e.target.value })
     }
     function handleMinus() {
-        setGoal(+monthlyGoalAmount - 10)
+        setUser({ ...user, monthlyGoalAmount: +monthlyGoalAmount - 10 })
+
     }
     function handleAdd() {
-        setGoal(+monthlyGoalAmount + 10)
+        setUser({ ...user, monthlyGoalAmount: +monthlyGoalAmount + 10 })
     }
-    const goalMsg = savings > monthlyGoalAmount ? 'You have suprassed your goal by $' + (savings - monthlyGoalAmount) : 'You are $' + (monthlyGoalAmount - savings) + ' away from your goal'
+    const goalMsg = savings > user.monthlyGoalAmount ? 'You have suprassed your goal by $' + (savings - monthlyGoalAmount) : 'You are $' + (monthlyGoalAmount - savings) + ' away from your goal'
     return (
             <Card className="react-budget__goal">
                 <CardHeader title="Set Your Monthly Goal"></CardHeader>

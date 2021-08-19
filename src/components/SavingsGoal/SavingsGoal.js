@@ -5,7 +5,8 @@ import { PieChart } from 'react-minimal-pie-chart';
 import { Card, CardHeader, Grid, Typography } from '@material-ui/core'
 
 export const Balance = () => {
-    const { transactions, monthlyGoalAmount } = useContext(GlobalContext);
+    const { transactions, user } = useContext(GlobalContext);
+    const monthlyGoalAmount = user.monthlyGoalAmount;
     const transactionAmounts = transactions.map((transaction) => transaction.amount)
     const savings = transactionAmounts.reduce((acc, item) => (acc += item), 0)
     let percentAchieved;

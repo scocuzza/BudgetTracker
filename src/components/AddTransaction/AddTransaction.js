@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import './AddTransaction.scss'
-import { Typography } from '@material-ui/core'
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import { expenseCategory } from '../../constants/constants'
