@@ -59,7 +59,6 @@ export default function SimpleTabs() {
   };
   const { user, loading, getUser } = useContext(GlobalContext)
   useEffect(()=>{
-    console.log('in the useEffect')
     getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

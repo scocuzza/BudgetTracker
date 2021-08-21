@@ -14,16 +14,13 @@ export const GlobalContext = createContext(initialState)
 //Provider component
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
-    console.log('in the global provider')
     useEffect(() => {
-        console.log('in the useEffect')
         getUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // Actions
     async function getUser() {
         try {
-            console.log('running get user')
             const res = await axios('/api/v1/users/4');
             dispatch({
                 type: 'GET_USER',
@@ -54,10 +51,10 @@ export const GlobalProvider = ({ children }) => {
     }
     async function addTransaction(transaction) {
         try {
-            const res = await axios.post('/api/v1/transactions', transaction);
+            const res = await axios.post('/api/v1/user/transactions/4', transaction);
             dispatch({
                 type: 'ADD_TRANSACTION',
-                payload: res.data
+                payload: transaction
             })
         } catch (err) {
             dispatch({

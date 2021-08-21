@@ -94,6 +94,7 @@ const useToolbarStyles = makeStyles((theme) => ({
     const { deleteTransaction } = useContext(GlobalContext)
 
     const handleDelete = (selected) => {
+      console.log(selected)
       deleteTransaction(selected)
       setSelected([])
     }
