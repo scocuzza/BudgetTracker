@@ -3,7 +3,7 @@ import { AppReducer } from './AppReducer';
 import axios from 'axios'
 //Initial State
 const initialState = {
-    user: {},
+    user: {investments: ''},
     error: null,
     loading: true
 }
@@ -63,7 +63,21 @@ export const GlobalProvider = ({ children }) => {
             })
         }
     }
-    function setMonthlyGoal(monthlyGoalAmount) {
+    async function addAccount(account) {
+        console.log('adding account')
+        try {
+            dispatch({
+                type: 'ADD_ACCOUNT',
+                payload: account
+            })
+        } catch (err) {
+            dispatch({
+                type: 'ACCOUNT_ERROR',
+                payload: err.response
+            })
+        }
+    }
+    async function setMonthlyGoal(monthlyGoalAmount) {
         dispatch({
             type:'SET_MONTHLYGOAL',
             payload:{ ...state.user, monthlyGoalAmount: monthlyGoalAmount }
@@ -75,8 +89,9 @@ export const GlobalProvider = ({ children }) => {
         addTransaction,
         setMonthlyGoal,
         getUser,
+        addAccount,
         error: state.error,
         loading: state.loading,
-        user: state.user
+        user: state.user,
     }}>{children}</GlobalContext.Provider>)
 }

@@ -4,8 +4,9 @@
     &-input {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         padding: 0 10;
         margin-bottom: 10px;
+        width: 60%;
+        justify-content: space-between;
     }
 }

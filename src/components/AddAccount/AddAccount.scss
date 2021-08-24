@@ -1,0 +1,29 @@
+.react-budget__add-account {
+    display: flex;
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+    &-content {
+        display: flex;
+        align-items: center;
+    }
+    &-text {
+        display: flex;
+        justify-content: space-evenly;
+        &__or,
+        &__asset,
+        &__liability {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        &__or {
+            flex-basis: 10%;
+        }
+        &__asset {
+            flex-basis: 33%;
+        }
+        &__liability {
+            flex-basis: 33%;
+        }
+    }
+}

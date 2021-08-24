@@ -1,4 +1,5 @@
 import React from 'react';
+import './Navigation.scss'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -6,7 +7,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,14 +15,19 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { useRouteMatch } from 'react-router';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -76,12 +81,15 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
-
+function handleClick(event) {
+  console.info('You clicked a breadcrumb.');
+}
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const routerMatch = useRouteMatch(["/investments", "/cash", "/summary"])
+  console.log(routerMatch)
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -109,9 +117,16 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            React Budget Tracker
-          </Typography>
+          <Breadcrumbs  separator={<NavigateNextIcon className="react-budget__breadcrumb-link" fontSize="small"/>} aria-label="breadcrumb">
+            <Link className="react-budget__breadcrumb-link" href="/" onClick={handleClick}>
+              ProFinance
+            </Link>
+            {routerMatch ? 
+             <Link className="react-budget__breadcrumb-link" href="/" onClick={handleClick}>
+               {routerMatch.path.substring(1).charAt(0).toUpperCase() + routerMatch.path.slice(2)}
+             </Link> : ''  
+          }
+          </Breadcrumbs>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -130,22 +145,32 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['My Budget', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+            <Link color="inherit" href="/">
+             <ListItem button key='Monthly Budget'>
+              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemText  primary='Monthly Budget' />
             </ListItem>
-          ))}
+            </Link>
+            <Link color="inherit" href="/investments">
+            <ListItem button key='Assets & Investments'>
+             <ListItemIcon><MailIcon /></ListItemIcon>
+             <ListItemText  primary='Assets & Investments' />
+           </ListItem>
+           </Link>
+           <Link color="inherit" href="/cash">
+           <ListItem button key='Cash'>
+            <ListItemIcon><MailIcon /></ListItemIcon>
+            <ListItemText  primary='Cash' />
+          </ListItem>
+          </Link>
+          <Link color="inherit" href="/summary">
+          <ListItem button key='Summary'>
+           <ListItemIcon><MailIcon /></ListItemIcon>
+           <ListItemText primary='Summary' />
+         </ListItem>
+         </Link>
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <main
         className={clsx(classes.content, {

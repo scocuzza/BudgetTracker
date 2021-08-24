@@ -5,11 +5,13 @@ import { IncomeExpense } from './components/IncomeExpense/IncomeExpense'
 import TransactionTabs from './components/TransactionTabs/TransactionTabs'
 import { AddTransaction } from './components/AddTransaction/AddTransaction'
 import { Goal } from './components/MonthlyGoal/MonthlyGoal'
-import { GlobalContext, GlobalProvider } from './context/GlobalState'
+import { GlobalProvider } from './context/GlobalState'
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { ExpenseBreakdown } from './components/ExpenseBreakdown/ExpenseBreakdown';
 import Navigation from './components/Navigation/Navigation'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AccountContainer } from './components/AccountContainer/AccountContainer';
 
 const theme = createTheme({
   palette: {
@@ -26,9 +28,12 @@ const theme = createTheme({
 
 function App() {
   return (
+    <Router>
     <GlobalProvider>
        <ThemeProvider theme={theme}>
       <Navigation />
+      <Switch>
+      <Route exact path="/">
       <div className="react-budget__flexbox">
         <IncomeExpense />
         <div className="react-budget__balance-goal-flexbox">
@@ -39,8 +44,14 @@ function App() {
         <AddTransaction />
         <TransactionTabs />
       </div>
+      </Route>
+      <Route exact path="/investments">
+        <AccountContainer />
+      </Route>
+      </Switch>
       </ThemeProvider>
     </GlobalProvider>
+    </Router>
   );
 }
 
